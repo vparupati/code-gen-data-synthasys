@@ -1,0 +1,2 @@
+Show me all payments along with information about which batch they came from. For each payment, I want to see the payment reference, amount, currency, payment status, the batch reference number, which system sent the batch, and the batch status. Show the most recent payments first.
+

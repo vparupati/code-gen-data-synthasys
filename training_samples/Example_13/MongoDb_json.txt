@@ -1,0 +1,7 @@
+{
+  "payment_ref": "PMT-2025-01-15-0001",
+  "current_state": "VALIDATED",
+  "last_state_changed_at": { "$date": "2025-01-15T10:20:00Z" },
+  "updated_at": { "$date": "2025-01-15T10:20:00Z" }
+}
+

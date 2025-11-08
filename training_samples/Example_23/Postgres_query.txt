@@ -1,0 +1,7 @@
+-- Delete payments with conditions
+-- Note: This will also delete related payment_events and payment_route_steps due to CASCADE
+DELETE FROM payments
+WHERE payment_state = 'FAILED'
+  AND created_at < now() - INTERVAL '30 days'
+RETURNING payment_ref, payment_state, created_at;
+

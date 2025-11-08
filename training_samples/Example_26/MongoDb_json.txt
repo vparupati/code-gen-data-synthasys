@@ -1,0 +1,6 @@
+{
+  "source_state": "RECEIVED",
+  "target_state": "VALIDATED",
+  "transition_count": 120
+}
+

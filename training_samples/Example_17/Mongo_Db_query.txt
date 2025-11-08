@@ -1,0 +1,16 @@
+// UNION equivalent using $unionWith
+db.payments.aggregate([
+  { $match: { scheme: "FPS" } },
+  { $project: { transaction_reference: "$payment_ref", payment_method: "$scheme" } },
+  {
+    $unionWith: {
+      coll: "payments",
+      pipeline: [
+        { $match: { scheme: "SEPA" } },
+        { $project: { transaction_reference: "$payment_ref", payment_method: "$scheme" } }
+      ]
+    }
+  },
+  { $sort: { transaction_reference: 1 } }
+]);
+

@@ -1,0 +1,37 @@
+// Analytical query: Payment success rate by scheme
+db.payments.aggregate([
+  {
+    $group: {
+      _id: "$scheme",
+      total_transactions: { $sum: 1 },
+      settled_count: {
+        $sum: { $cond: [{ $eq: ["$current_state", "SETTLED"] }, 1, 0] }
+      },
+      rejected_count: {
+        $sum: { $cond: [{ $eq: ["$current_state", "REJECTED"] }, 1, 0] }
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      payment_method: "$_id",
+      total_transactions: 1,
+      settled_count: 1,
+      rejected_count: 1,
+      success_rate_percent: {
+        $round: [
+          {
+            $multiply: [
+              { $divide: ["$settled_count", "$total_transactions"] },
+              100
+            ]
+          },
+          2
+        ]
+      }
+    }
+  },
+  { $sort: { success_rate_percent: -1 } }
+]);
+

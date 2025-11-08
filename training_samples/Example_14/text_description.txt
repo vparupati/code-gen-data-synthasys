@@ -1,0 +1,2 @@
+Record that payment 'PMT-2025-01-15-0001' has changed status from 'received' to 'validated'. This change was done by the system's validation service. The anti-money laundering check passed and the payment schema is ISO20022. Show me the event details including the sequence number, the state change, and when it happened.
+

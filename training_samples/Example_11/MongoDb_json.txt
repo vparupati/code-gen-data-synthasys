@@ -1,0 +1,9 @@
+{
+  "transaction_reference": "PMT-2025-01-15-0001",
+  "payment_amount": { "$numberDecimal": "2000.00" },
+  "sender_name": "Acme Manufacturing Ltd",
+  "sender_email": "ap@acme.example",
+  "receiver_name": "Widgets Wholesale PLC",
+  "receiver_email": "info@widgets.example"
+}
+

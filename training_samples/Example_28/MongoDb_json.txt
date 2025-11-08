@@ -1,0 +1,15 @@
+[
+  {
+    "transaction_reference": "PMT-2025-01-15-0001",
+    "payment_amount": { "$numberDecimal": "50000.00" },
+    "transaction_currency": "GBP",
+    "transaction_status": "SETTLED"
+  },
+  {
+    "transaction_reference": "PMT-2025-01-15-0002",
+    "payment_amount": { "$numberDecimal": "45000.00" },
+    "transaction_currency": "USD",
+    "transaction_status": "SETTLED"
+  }
+]
+

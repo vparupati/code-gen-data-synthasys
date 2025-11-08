@@ -1,0 +1,9 @@
+{
+  "payment_method": "FPS",
+  "transaction_count": 150,
+  "total_payment_amount": { "$numberDecimal": "500000.00" },
+  "average_payment_amount": { "$numberDecimal": "3333.33" },
+  "minimum_amount": { "$numberDecimal": "10.00" },
+  "maximum_amount": { "$numberDecimal": "50000.00" }
+}
+

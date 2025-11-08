@@ -1,0 +1,66 @@
+// Transaction: Create message with payment and state history
+var session = db.getMongo().startSession();
+session.startTransaction();
+
+try {
+  // Insert message
+  var messageResult = db.messages.insertOne({
+    external_ref: "BATCH_TXN_001",
+    source_system: "TestSystem",
+    current_state: "RECEIVED",
+    received_at: new Date(),
+    last_state_changed_at: new Date(),
+    attributes: {},
+    payment_ids: [],
+    totals: { count: 0, by_currency: [] },
+    created_at: new Date(),
+    updated_at: new Date()
+  }, { session: session });
+
+  // Insert payment
+  var paymentResult = db.payments.insertOne({
+    message_id: messageResult.insertedId,
+    payment_ref: "PMT-TXN-001",
+    scheme: "FPS",
+    amount: NumberDecimal("1000.00"),
+    currency: "GBP",
+    current_state: "RECEIVED",
+    last_state_changed_at: new Date(),
+    instructed_on: new Date(),
+    debtor_snapshot: { display_name: "Test Debtor", identifiers: [] },
+    creditor_snapshot: { display_name: "Test Creditor", identifiers: [] },
+    state_history: [{
+      seq_no: 1,
+      from_state: null,
+      to_state: "RECEIVED",
+      actor: { type: "SYSTEM" },
+      occurred_at: new Date(),
+      metadata: {}
+    }],
+    route_steps: [],
+    route_summary: {},
+    attributes: {},
+    created_at: new Date(),
+    updated_at: new Date()
+  }, { session: session });
+
+  // Update message with payment ID
+  db.messages.updateOne(
+    { _id: messageResult.insertedId },
+    {
+      $push: { payment_ids: paymentResult.insertedId },
+      $set: { "totals.count": 1, updated_at: new Date() }
+    },
+    { session: session }
+  );
+
+  session.commitTransaction();
+  print("Transaction committed successfully");
+} catch (error) {
+  session.abortTransaction();
+  print("Transaction aborted: " + error);
+  throw error;
+} finally {
+  session.endSession();
+}
+

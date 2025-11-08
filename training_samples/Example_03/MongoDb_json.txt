@@ -1,0 +1,10 @@
+{
+  "_id": ObjectId("6755f0b2c3a9b2f3d4a10001"),
+  "legal_name": "Bank A UK",
+  "bic": "BKUKGB22XXX",
+  "lei": "213800D1EI4B9WTWWD28",
+  "country_code": "GB",
+  "created_at": { "$date": "2025-01-15T10:00:00Z" },
+  "updated_at": { "$date": "2025-01-15T10:00:00Z" }
+}
+

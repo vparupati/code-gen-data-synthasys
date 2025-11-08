@@ -1,0 +1,2 @@
+Show me all payments with the names and email addresses of who sent the payment and who received it. For each payment, show the payment reference, amount, sender's name and email, and receiver's name and email. Show the most recent payments first.
+

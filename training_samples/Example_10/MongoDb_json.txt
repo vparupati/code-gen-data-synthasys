@@ -1,0 +1,10 @@
+{
+  "transaction_reference": "PMT-2025-01-15-0001",
+  "payment_amount": { "$numberDecimal": "2000.00" },
+  "transaction_currency": "GBP",
+  "transaction_status": "SETTLED",
+  "batch_identifier": "BATCH_2025-01-15_001",
+  "origin_system": "UpstreamGateway-A",
+  "batch_status": "SETTLED"
+}
+

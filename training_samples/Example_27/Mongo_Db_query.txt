@@ -1,0 +1,25 @@
+// Routing analysis
+db.payments.aggregate([
+  { $unwind: "$route_steps" },
+  {
+    $group: {
+      _id: {
+        routing_role: "$route_steps.role",
+        institution_country: "$route_steps.institution_snapshot.country_code"
+      },
+      step_count: { $sum: 1 },
+      payment_count: { $addToSet: "$_id" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      routing_role: "$_id.routing_role",
+      institution_country: "$_id.institution_country",
+      step_count: 1,
+      payment_count: { $size: "$payment_count" }
+    }
+  },
+  { $sort: { step_count: -1 } }
+]);
+

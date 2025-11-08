@@ -1,0 +1,9 @@
+{
+  "transaction_reference": "PMT-2025-01-15-0001",
+  "payment_method": "FPS",
+  "payment_amount": { "$numberDecimal": "2000.00" },
+  "rank_within_scheme": 1,
+  "overall_rank": 5,
+  "total_for_scheme": { "$numberDecimal": "50000.00" }
+}
+

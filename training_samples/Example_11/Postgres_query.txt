@@ -1,0 +1,13 @@
+-- Join payments with parties (debtor and creditor)
+SELECT 
+    p.payment_ref AS transaction_reference,
+    p.amount AS payment_amount,
+    debtor_party.display_name AS sender_name,
+    debtor_party.email AS sender_email,
+    creditor_party.display_name AS receiver_name,
+    creditor_party.email AS receiver_email
+FROM payments p
+LEFT JOIN parties debtor_party ON p.debtor_id = debtor_party.id
+LEFT JOIN parties creditor_party ON p.creditor_id = creditor_party.id
+ORDER BY p.created_at DESC;
+

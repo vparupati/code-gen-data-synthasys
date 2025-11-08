@@ -1,0 +1,7 @@
+Transaction result:
+{
+  "message_id": ObjectId("6755f0b2c3a9b2f3d4a30002"),
+  "payment_id": ObjectId("6755f0b2c3a9b2f3d4a40002"),
+  "status": "committed"
+}
+

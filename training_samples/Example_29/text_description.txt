@@ -1,0 +1,2 @@
+Create a summary report of payments with subtotals. Show me payment counts and total amounts grouped by payment scheme and currency. Also show subtotals for each scheme (all currencies combined) and an overall total (all schemes and currencies combined). Group the results so subtotals appear after their detailed breakdowns.
+

@@ -1,0 +1,11 @@
+-- Get payments by state
+SELECT 
+    payment_ref AS transaction_reference,
+    amount AS payment_amount,
+    currency AS transaction_currency,
+    payment_state AS transaction_status,
+    last_state_changed_at AS status_change_time
+FROM payments 
+WHERE payment_state = 'SETTLED'
+ORDER BY last_state_changed_at DESC;
+

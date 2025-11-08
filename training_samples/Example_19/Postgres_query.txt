@@ -1,0 +1,11 @@
+-- Window functions: Rank payments by amount within each scheme
+SELECT 
+    payment_ref AS transaction_reference,
+    scheme AS payment_method,
+    amount AS payment_amount,
+    ROW_NUMBER() OVER (PARTITION BY scheme ORDER BY amount DESC) AS rank_within_scheme,
+    RANK() OVER (ORDER BY amount DESC) AS overall_rank,
+    SUM(amount) OVER (PARTITION BY scheme) AS total_for_scheme
+FROM payments
+ORDER BY scheme, rank_within_scheme;
+

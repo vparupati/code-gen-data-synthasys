@@ -1,0 +1,7 @@
+{
+  "transaction_reference": "PMT-2025-01-15-0001",
+  "payment_amount": { "$numberDecimal": "2000.00" },
+  "sender_name": "Acme Manufacturing Ltd",
+  "transaction_status": "SETTLED"
+}
+

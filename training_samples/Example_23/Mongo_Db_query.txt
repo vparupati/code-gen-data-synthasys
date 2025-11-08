@@ -1,0 +1,11 @@
+// Delete payments with conditions
+var thirtyDaysAgo = new Date();
+thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+var result = db.payments.deleteMany({
+  current_state: "FAILED",
+  created_at: { $lt: thirtyDaysAgo }
+});
+
+print("Deleted " + result.deletedCount + " payments");
+

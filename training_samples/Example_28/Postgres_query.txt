@@ -1,0 +1,11 @@
+-- Top 10 payments by amount
+SELECT 
+    payment_ref AS transaction_reference,
+    amount AS payment_amount,
+    currency AS transaction_currency,
+    payment_state AS transaction_status,
+    created_at AS transaction_creation_date
+FROM payments
+ORDER BY amount DESC
+LIMIT 10;
+

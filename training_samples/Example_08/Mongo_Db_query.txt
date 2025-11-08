@@ -1,0 +1,3 @@
+// Get payment by payment reference
+db.payments.findOne({ payment_ref: "PMT-2025-01-15-0001" });
+

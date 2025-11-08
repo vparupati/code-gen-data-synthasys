@@ -1,0 +1,24 @@
+{
+  "by_scheme_currency": [
+    {
+      "_id": { "scheme": "FPS", "currency": "GBP" },
+      "transaction_count": 100,
+      "total_amount": { "$numberDecimal": "200000.00" }
+    }
+  ],
+  "by_scheme": [
+    {
+      "_id": "FPS",
+      "transaction_count": 150,
+      "total_amount": { "$numberDecimal": "300000.00" }
+    }
+  ],
+  "overall": [
+    {
+      "_id": null,
+      "transaction_count": 500,
+      "total_amount": { "$numberDecimal": "1000000.00" }
+    }
+  ]
+}
+

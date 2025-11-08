@@ -1,0 +1,33 @@
+// Window functions: Rank payments by amount within each scheme
+db.payments.aggregate([
+  {
+    $setWindowFields: {
+      partitionBy: "$scheme",
+      sortBy: { amount: -1 },
+      output: {
+        rank_within_scheme: { $documentNumber: {} },
+        total_for_scheme: { $sum: "$amount" }
+      }
+    }
+  },
+  {
+    $setWindowFields: {
+      sortBy: { amount: -1 },
+      output: {
+        overall_rank: { $rank: {} }
+      }
+    }
+  },
+  {
+    $project: {
+      transaction_reference: "$payment_ref",
+      payment_method: "$scheme",
+      payment_amount: "$amount",
+      rank_within_scheme: 1,
+      overall_rank: 1,
+      total_for_scheme: 1
+    }
+  },
+  { $sort: { payment_method: 1, rank_within_scheme: 1 } }
+]);
+

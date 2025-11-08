@@ -1,0 +1,2 @@
+Mark the payment with reference 'PMT-2025-01-15-0001' as validated. Update the timestamp to show when this status change happened. Show me the payment reference, new status, and when it was updated.
+

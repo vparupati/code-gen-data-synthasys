@@ -1,0 +1,9 @@
+-- Subquery: Payments above average amount
+SELECT 
+    payment_ref AS transaction_reference,
+    amount AS payment_amount,
+    (SELECT AVG(amount) FROM payments) AS average_payment_amount
+FROM payments
+WHERE amount > (SELECT AVG(amount) FROM payments)
+ORDER BY amount DESC;
+

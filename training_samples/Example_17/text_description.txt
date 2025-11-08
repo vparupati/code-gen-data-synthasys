@@ -1,0 +1,2 @@
+Show me a combined list of all payment references from both FPS and SEPA payment schemes. For each payment, show the payment reference and which scheme it uses. Sort the list by payment reference.
+

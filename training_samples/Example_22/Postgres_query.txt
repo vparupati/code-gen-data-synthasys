@@ -1,0 +1,11 @@
+-- Analytical query: Payment success rate by scheme
+SELECT 
+    scheme AS payment_method,
+    COUNT(*) AS total_transactions,
+    COUNT(CASE WHEN payment_state = 'SETTLED' THEN 1 END) AS settled_count,
+    COUNT(CASE WHEN payment_state = 'REJECTED' THEN 1 END) AS rejected_count,
+    ROUND(100.0 * COUNT(CASE WHEN payment_state = 'SETTLED' THEN 1 END) / COUNT(*), 2) AS success_rate_percent
+FROM payments
+GROUP BY scheme
+ORDER BY success_rate_percent DESC;
+

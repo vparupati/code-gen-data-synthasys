@@ -1,0 +1,10 @@
+-- Routing analysis
+SELECT 
+    role AS routing_role,
+    country_code AS institution_country,
+    COUNT(*) AS step_count,
+    COUNT(DISTINCT payment_id) AS payment_count
+FROM payment_route_steps
+GROUP BY role, country_code
+ORDER BY step_count DESC;
+

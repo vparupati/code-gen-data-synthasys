@@ -1,0 +1,2 @@
+Set up a new payment processing system. Create a place to store all the payment information. The system should be called 'payment_db'. Also create a user account named 'payment_user' with password 'payment_pass' that can read and write data.
+

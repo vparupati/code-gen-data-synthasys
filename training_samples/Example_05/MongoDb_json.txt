@@ -1,0 +1,20 @@
+{
+  "_id": ObjectId("6755f0b2c3a9b2f3d4a30001"),
+  "external_ref": "BATCH_2025-01-15_001",
+  "source_system": "UpstreamGateway-A",
+  "current_state": "RECEIVED",
+  "received_at": { "$date": "2025-01-15T10:10:00Z" },
+  "last_state_changed_at": { "$date": "2025-01-15T10:10:00Z" },
+  "attributes": {
+    "format": "ISO20022-pacs.008",
+    "file_hash": "sha256:abcd1234"
+  },
+  "payment_ids": [],
+  "totals": {
+    "count": 0,
+    "by_currency": []
+  },
+  "created_at": { "$date": "2025-01-15T10:10:00Z" },
+  "updated_at": { "$date": "2025-01-15T10:10:00Z" }
+}
+

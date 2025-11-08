@@ -1,0 +1,28 @@
+// INTERSECT equivalent using $setIntersection
+db.payments.aggregate([
+  {
+    $facet: {
+      gbp_payments: [
+        { $match: { currency: "GBP" } },
+        { $project: { transaction_reference: "$payment_ref" } }
+      ],
+      eur_payments: [
+        { $match: { currency: "EUR" } },
+        { $project: { transaction_reference: "$payment_ref" } }
+      ]
+    }
+  },
+  {
+    $project: {
+      common_references: {
+        $setIntersection: [
+          "$gbp_payments.transaction_reference",
+          "$eur_payments.transaction_reference"
+        ]
+      }
+    }
+  },
+  { $unwind: "$common_references" },
+  { $project: { transaction_reference: "$common_references" } }
+]);
+

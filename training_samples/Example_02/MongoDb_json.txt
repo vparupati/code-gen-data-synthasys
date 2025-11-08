@@ -1,0 +1,65 @@
+MongoDB collections are created automatically when first document is inserted.
+The structure is defined by the first document inserted. Example structure:
+
+Institutions collection:
+{
+  "_id": ObjectId("..."),
+  "legal_name": "Bank Name",
+  "bic": "BANKGB22XXX",
+  "lei": "5493001KJTIIGC8Y1R12",
+  "country_code": "GB",
+  "created_at": ISODate("2025-01-01T00:00:00Z"),
+  "updated_at": ISODate("2025-01-01T00:00:00Z")
+}
+
+Parties collection:
+{
+  "_id": ObjectId("..."),
+  "party_type": "DEBTOR",
+  "display_name": "Company Name",
+  "institution_id": ObjectId("..."),
+  "email": "contact@company.com",
+  "phone": "+44-20-1234-5678",
+  "identifiers": [
+    { "type": "IBAN", "value": "GB82WEST12345698765432", "scheme": "ISO13616" }
+  ],
+  "created_at": ISODate("2025-01-01T00:00:00Z"),
+  "updated_at": ISODate("2025-01-01T00:00:00Z")
+}
+
+Messages collection:
+{
+  "_id": ObjectId("..."),
+  "external_ref": "BATCH_001",
+  "source_system": "System-A",
+  "current_state": "RECEIVED",
+  "received_at": ISODate("2025-01-01T00:00:00Z"),
+  "last_state_changed_at": ISODate("2025-01-01T00:00:00Z"),
+  "attributes": {},
+  "payment_ids": [],
+  "totals": { "count": 0, "by_currency": [] },
+  "created_at": ISODate("2025-01-01T00:00:00Z"),
+  "updated_at": ISODate("2025-01-01T00:00:00Z")
+}
+
+Payments collection:
+{
+  "_id": ObjectId("..."),
+  "message_id": ObjectId("..."),
+  "payment_ref": "PMT-001",
+  "scheme": "FPS",
+  "amount": NumberDecimal("1000.00"),
+  "currency": "GBP",
+  "current_state": "RECEIVED",
+  "last_state_changed_at": ISODate("2025-01-01T00:00:00Z"),
+  "instructed_on": ISODate("2025-01-01T00:00:00Z"),
+  "debtor_snapshot": { "display_name": "Debtor", "identifiers": [] },
+  "creditor_snapshot": { "display_name": "Creditor", "identifiers": [] },
+  "state_history": [],
+  "route_steps": [],
+  "route_summary": {},
+  "attributes": {},
+  "created_at": ISODate("2025-01-01T00:00:00Z"),
+  "updated_at": ISODate("2025-01-01T00:00:00Z")
+}
+

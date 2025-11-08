@@ -1,0 +1,7 @@
+{
+  "payment_ref": "PMT-2025-01-15-0001",
+  "amount": { "$numberDecimal": "2000.00" },
+  "currency": "GBP",
+  "current_state": "RECEIVED"
+}
+

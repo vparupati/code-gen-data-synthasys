@@ -1,0 +1,33 @@
+-- Transaction: Create message with payment and event
+BEGIN;
+
+-- Insert message
+INSERT INTO messages (external_ref, source_system, message_state, total_payments)
+VALUES ('BATCH_TXN_001', 'TestSystem', 'RECEIVED', 1)
+RETURNING id INTO message_id_var;
+
+-- Insert payment (using message_id_var from above)
+INSERT INTO payments (
+    message_id, payment_ref, scheme, amount, currency,
+    debtor_snapshot, creditor_snapshot
+)
+VALUES (
+    message_id_var,
+    'PMT-TXN-001',
+    'FPS',
+    1000.00,
+    'GBP',
+    '{"display_name": "Test Debtor"}'::jsonb,
+    '{"display_name": "Test Creditor"}'::jsonb
+)
+RETURNING id INTO payment_id_var;
+
+-- Insert payment event
+INSERT INTO payment_events (payment_id, from_state, to_state, actor_type)
+VALUES (payment_id_var, NULL, 'RECEIVED', 'SYSTEM');
+
+-- Update message total
+UPDATE messages SET total_payments = 1 WHERE id = message_id_var;
+
+COMMIT;
+

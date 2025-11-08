@@ -1,0 +1,22 @@
+-- CTE: Payment statistics by scheme
+WITH payment_stats AS (
+    SELECT 
+        scheme AS payment_method,
+        COUNT(*) AS transaction_count,
+        SUM(amount) AS total_amount,
+        AVG(amount) AS average_amount,
+        MIN(amount) AS minimum_amount,
+        MAX(amount) AS maximum_amount
+    FROM payments
+    GROUP BY scheme
+)
+SELECT 
+    payment_method,
+    transaction_count,
+    total_amount,
+    ROUND(average_amount::numeric, 2) AS average_amount,
+    minimum_amount,
+    maximum_amount
+FROM payment_stats
+ORDER BY total_amount DESC;
+

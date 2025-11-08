@@ -1,0 +1,2 @@
+Calculate the success rate for each payment scheme. For each scheme, show how many total payments there are, how many were successfully settled, how many were rejected, and calculate the success rate as a percentage (rounded to 2 decimal places). Show the schemes with the highest success rates first.
+

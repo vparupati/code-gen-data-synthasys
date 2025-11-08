@@ -1,0 +1,2 @@
+Find all payments over 1000. For each payment, show me the payment reference, how much money was sent, who sent it, and what the current status is. Show the highest amounts first.
+

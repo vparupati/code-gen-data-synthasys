@@ -1,0 +1,12 @@
+// Query payments by date range
+db.payments.find({
+  created_at: {
+    $gte: ISODate("2025-01-15T00:00:00Z"),
+    $lt: ISODate("2025-01-16T00:00:00Z")
+  }
+}).sort({ created_at: -1 }).forEach(function(payment) {
+  print("Payment: " + payment.payment_ref + 
+        ", Amount: " + payment.amount + 
+        ", Created: " + payment.created_at);
+});
+

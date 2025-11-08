@@ -1,0 +1,2 @@
+Show me all payments that were created on January 15, 2025. For each payment, show the payment reference, amount, currency, current status, and when it was created. Show the most recently created payments first.
+

@@ -1,0 +1,35 @@
+// GROUP BY ROLLUP equivalent using $facet
+db.payments.aggregate([
+  {
+    $facet: {
+      by_scheme_currency: [
+        {
+          $group: {
+            _id: { scheme: "$scheme", currency: "$currency" },
+            transaction_count: { $sum: 1 },
+            total_amount: { $sum: "$amount" }
+          }
+        }
+      ],
+      by_scheme: [
+        {
+          $group: {
+            _id: "$scheme",
+            transaction_count: { $sum: 1 },
+            total_amount: { $sum: "$amount" }
+          }
+        }
+      ],
+      overall: [
+        {
+          $group: {
+            _id: null,
+            transaction_count: { $sum: 1 },
+            total_amount: { $sum: "$amount" }
+          }
+        }
+      ]
+    }
+  }
+]);
+

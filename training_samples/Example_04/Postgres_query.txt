@@ -1,0 +1,21 @@
+-- Insert a party with institution reference
+-- First, get the institution ID (assuming it exists from Example 03)
+-- Then insert the party
+INSERT INTO parties (party_type, display_name, institution_id, email, phone)
+VALUES ('DEBTOR', 'Acme Manufacturing Ltd', 
+        (SELECT id FROM institutions WHERE bic = 'BKUKGB22XXX' LIMIT 1),
+        'ap@acme.example', '+44-20-1234-5678');
+
+-- Insert party identifiers separately
+INSERT INTO party_identifiers (party_id, id_type, id_value, scheme)
+VALUES (
+  (SELECT id FROM parties WHERE display_name = 'Acme Manufacturing Ltd' LIMIT 1),
+  'ACCOUNT_NO', '12345678', 'GB-ACCOUNT'
+);
+
+INSERT INTO party_identifiers (party_id, id_type, id_value, scheme)
+VALUES (
+  (SELECT id FROM parties WHERE display_name = 'Acme Manufacturing Ltd' LIMIT 1),
+  'SORT_CODE', '12-34-56', 'GB-SORTCODE'
+);
+

@@ -1,0 +1,32 @@
+-- Insert a payment
+-- First get the message ID and party IDs
+DO $$
+DECLARE
+    msg_id UUID;
+    debtor_party_id UUID;
+    creditor_party_id UUID;
+BEGIN
+    SELECT id INTO msg_id FROM messages WHERE external_ref = 'BATCH_2025-01-15_001' LIMIT 1;
+    SELECT id INTO debtor_party_id FROM parties WHERE display_name = 'Acme Manufacturing Ltd' LIMIT 1;
+    SELECT id INTO creditor_party_id FROM parties WHERE display_name = 'Widgets Wholesale PLC' LIMIT 1;
+    
+    INSERT INTO payments (
+        message_id, payment_ref, scheme, amount, currency, payment_state,
+        debtor_snapshot, creditor_snapshot, debtor_id, creditor_id, route_summary, attributes
+    )
+    VALUES (
+        msg_id,
+        'PMT-2025-01-15-0001',
+        'FPS',
+        2000.00,
+        'GBP',
+        'RECEIVED',
+        '{"display_name": "Acme Manufacturing Ltd", "identifiers": [{"type": "ACCOUNT_NO", "value": "12345678"}]}'::jsonb,
+        '{"display_name": "Widgets Wholesale PLC", "identifiers": [{"type": "ACCOUNT_NO", "value": "87654321"}]}'::jsonb,
+        debtor_party_id,
+        creditor_party_id,
+        '{"method": "DIRECT"}'::jsonb,
+        '{"priority": "HIGH", "fee_model": "OUR"}'::jsonb
+    );
+END $$;
+

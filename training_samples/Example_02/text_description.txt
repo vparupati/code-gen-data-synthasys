@@ -1,0 +1,2 @@
+Set up the structure for storing payment information. We need to be able to store information about banks, people and companies involved in payments, batches of payments, individual payment transactions, and the history of what happened to each payment. The system should track payment statuses like received, validated, settled, rejected, and failed. It should support different payment methods like FPS and SEPA, and various currencies like GBP, USD, EUR, and others.
+

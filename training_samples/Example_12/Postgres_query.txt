@@ -1,0 +1,12 @@
+-- Aggregate payments by scheme
+SELECT 
+    scheme AS payment_method,
+    COUNT(*) AS transaction_count,
+    SUM(amount) AS total_payment_amount,
+    AVG(amount) AS average_payment_amount,
+    MIN(amount) AS minimum_amount,
+    MAX(amount) AS maximum_amount
+FROM payments
+GROUP BY scheme
+ORDER BY total_payment_amount DESC;
+

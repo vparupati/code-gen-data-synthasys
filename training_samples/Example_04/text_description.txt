@@ -1,0 +1,2 @@
+Add a new company that will be sending payments. The company name is 'Acme Manufacturing Ltd' and it's associated with the bank that has BIC code 'BKUKGB22XXX'. Their contact email is 'ap@acme.example' and phone number is '+44-20-1234-5678'. This company has two account identifiers: account number '12345678' and sort code '12-34-56'.
+

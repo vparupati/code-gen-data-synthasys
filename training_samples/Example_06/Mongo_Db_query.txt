@@ -1,0 +1,45 @@
+// Insert a payment with embedded snapshots and state history
+// Get message and party IDs
+var messageId = db.messages.findOne({ external_ref: "BATCH_2025-01-15_001" })._id;
+var debtorId = db.parties.findOne({ display_name: "Acme Manufacturing Ltd" })._id;
+var creditorId = db.parties.findOne({ display_name: "Widgets Wholesale PLC" })._id;
+
+// Insert payment
+db.payments.insertOne({
+  message_id: messageId,
+  payment_ref: "PMT-2025-01-15-0001",
+  scheme: "FPS",
+  amount: NumberDecimal("2000.00"),
+  currency: "GBP",
+  current_state: "RECEIVED",
+  last_state_changed_at: new Date(),
+  instructed_on: new Date(),
+  debtor_snapshot: {
+    display_name: "Acme Manufacturing Ltd",
+    identifiers: [
+      { type: "ACCOUNT_NO", value: "12345678", scheme: "GB-ACCOUNT" }
+    ]
+  },
+  creditor_snapshot: {
+    display_name: "Widgets Wholesale PLC",
+    identifiers: [
+      { type: "ACCOUNT_NO", value: "87654321", scheme: "GB-ACCOUNT" }
+    ]
+  },
+  debtor_id: debtorId,
+  creditor_id: creditorId,
+  state_history: [{
+    seq_no: 1,
+    from_state: null,
+    to_state: "RECEIVED",
+    actor: { type: "SYSTEM", id: "ingestion-svc" },
+    occurred_at: new Date(),
+    metadata: { source: "UpstreamGateway-A" }
+  }],
+  route_steps: [],
+  route_summary: { method: "DIRECT" },
+  attributes: { priority: "HIGH", fee_model: "OUR" },
+  created_at: new Date(),
+  updated_at: new Date()
+});
+

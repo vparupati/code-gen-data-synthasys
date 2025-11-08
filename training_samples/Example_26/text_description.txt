@@ -1,0 +1,2 @@
+Analyze how payments move through different statuses. Count how many times payments transition from each status to another status. Show me the source status, target status, and how many times that transition happened. Show the most common transitions first.
+

@@ -1,0 +1,9 @@
+-- State transition analysis
+SELECT 
+    from_state AS source_state,
+    to_state AS target_state,
+    COUNT(*) AS transition_count
+FROM payment_events
+GROUP BY from_state, to_state
+ORDER BY transition_count DESC;
+

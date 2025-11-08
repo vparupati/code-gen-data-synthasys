@@ -1,0 +1,2 @@
+Record that we received a new batch of payments from an external system. The batch reference number is 'BATCH_2025-01-15_001' and it came from 'UpstreamGateway-A'. The batch is currently in 'received' status and contains 0 payments so far. The file format is 'ISO20022-pacs.008' and the file hash is 'sha256:abcd1234'.
+

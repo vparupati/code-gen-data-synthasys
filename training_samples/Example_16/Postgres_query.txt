@@ -1,0 +1,12 @@
+-- Query payments by date range
+SELECT 
+    payment_ref AS transaction_reference,
+    amount AS payment_amount,
+    currency AS transaction_currency,
+    payment_state AS transaction_status,
+    created_at AS transaction_creation_date
+FROM payments
+WHERE created_at >= '2025-01-15T00:00:00Z'::timestamptz 
+  AND created_at < '2025-01-16T00:00:00Z'::timestamptz
+ORDER BY created_at DESC;
+

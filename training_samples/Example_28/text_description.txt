@@ -1,0 +1,2 @@
+Show me the top 10 largest payments. For each payment, show the payment reference, amount, currency, current status, and when it was created. Show the highest amounts first.
+

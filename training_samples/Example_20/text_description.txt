@@ -1,0 +1,2 @@
+Find all payments that are above the average payment amount. For each payment, show the payment reference, the payment amount, and what the average payment amount is. Show the highest amounts first.
+

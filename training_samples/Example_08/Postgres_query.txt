@@ -1,0 +1,3 @@
+-- Get payment by payment reference
+SELECT * FROM payments WHERE payment_ref = 'PMT-2025-01-15-0001';
+

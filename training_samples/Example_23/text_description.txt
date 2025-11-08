@@ -1,0 +1,2 @@
+Remove all payments that failed more than 30 days ago. Show me which payments were deleted by displaying their payment reference, status, and creation date.
+

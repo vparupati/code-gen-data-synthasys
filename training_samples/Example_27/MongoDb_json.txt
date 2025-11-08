@@ -1,0 +1,7 @@
+{
+  "routing_role": "INTERMEDIARY",
+  "institution_country": "DE",
+  "step_count": 45,
+  "payment_count": 30
+}
+

@@ -1,0 +1,12 @@
+// Update payment state
+db.payments.updateOne(
+  { payment_ref: "PMT-2025-01-15-0001" },
+  {
+    $set: {
+      current_state: "VALIDATED",
+      last_state_changed_at: new Date(),
+      updated_at: new Date()
+    }
+  }
+);
+

@@ -1,0 +1,12 @@
+{
+  "transaction_reference": "PMT-2025-01-15-0001",
+  "payment_amount": { "$numberDecimal": "2000.00" },
+  "transaction_currency": "GBP",
+  "sender_name": "Acme Manufacturing Ltd",
+  "sender_bank_name": "Bank A UK",
+  "sender_bank_code": "BKUKGB22XXX",
+  "receiver_name": "Widgets Wholesale PLC",
+  "receiver_bank_name": "Bank B UK",
+  "receiver_bank_code": "BKBKGB2LXXX"
+}
+

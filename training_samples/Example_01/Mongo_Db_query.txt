@@ -1,0 +1,15 @@
+// Create database for payment processing
+db = db.getSiblingDB('payment_db');
+
+// Create user with read/write permissions
+db.createUser({
+  user: 'payment_user',
+  pwd: 'payment_pass',
+  roles: [
+    {
+      role: 'readWrite',
+      db: 'payment_db'
+    }
+  ]
+});
+

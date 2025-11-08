@@ -1,0 +1,9 @@
+-- Create database for payment processing
+CREATE DATABASE payment_db;
+
+-- Connect to the database
+\c payment_db;
+
+-- Enable UUID generation extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+

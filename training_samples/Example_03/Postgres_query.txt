@@ -1,0 +1,4 @@
+-- Insert a single institution
+INSERT INTO institutions (legal_name, bic, lei, country_code)
+VALUES ('Bank A UK', 'BKUKGB22XXX', '213800D1EI4B9WTWWD28', 'GB');
+

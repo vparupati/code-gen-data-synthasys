@@ -1,0 +1,8 @@
+-- Update payment state
+UPDATE payments
+SET payment_state = 'VALIDATED',
+    last_state_changed_at = now(),
+    updated_at = now()
+WHERE payment_ref = 'PMT-2025-01-15-0001'
+RETURNING payment_ref, payment_state, last_state_changed_at;
+

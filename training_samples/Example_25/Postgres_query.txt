@@ -1,0 +1,18 @@
+-- Complex join: Payments with full party and institution info
+SELECT 
+    p.payment_ref AS transaction_reference,
+    p.amount AS payment_amount,
+    p.currency AS transaction_currency,
+    debtor_party.display_name AS sender_name,
+    debtor_inst.legal_name AS sender_bank_name,
+    debtor_inst.bic AS sender_bank_code,
+    creditor_party.display_name AS receiver_name,
+    creditor_inst.legal_name AS receiver_bank_name,
+    creditor_inst.bic AS receiver_bank_code
+FROM payments p
+INNER JOIN parties debtor_party ON p.debtor_id = debtor_party.id
+INNER JOIN institutions debtor_inst ON debtor_party.institution_id = debtor_inst.id
+INNER JOIN parties creditor_party ON p.creditor_id = creditor_party.id
+INNER JOIN institutions creditor_inst ON creditor_party.institution_id = creditor_inst.id
+ORDER BY p.created_at DESC;
+

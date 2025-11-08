@@ -1,0 +1,33 @@
+// Join payments with parties using $lookup
+db.payments.aggregate([
+  {
+    $lookup: {
+      from: "parties",
+      localField: "debtor_id",
+      foreignField: "_id",
+      as: "debtor_party"
+    }
+  },
+  {
+    $lookup: {
+      from: "parties",
+      localField: "creditor_id",
+      foreignField: "_id",
+      as: "creditor_party"
+    }
+  },
+  { $unwind: { path: "$debtor_party", preserveNullAndEmptyArrays: true } },
+  { $unwind: { path: "$creditor_party", preserveNullAndEmptyArrays: true } },
+  {
+    $project: {
+      transaction_reference: "$payment_ref",
+      payment_amount: "$amount",
+      sender_name: "$debtor_party.display_name",
+      sender_email: "$debtor_party.email",
+      receiver_name: "$creditor_party.display_name",
+      receiver_email: "$creditor_party.email"
+    }
+  },
+  { $sort: { created_at: -1 } }
+]);
+

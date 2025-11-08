@@ -1,0 +1,12 @@
+// Natural language mapping example
+// "Get payment amounts with sender names and transaction status"
+// Maps: payment amount → amount, sender name → debtor_snapshot.display_name, transaction status → current_state
+db.payments.find({
+  amount: { $gt: NumberDecimal("1000.00") }
+}).sort({ amount: -1 }).forEach(function(payment) {
+  print("Payment: " + payment.payment_ref);
+  print("  Amount: " + payment.amount);
+  print("  Sender: " + payment.debtor_snapshot.display_name);
+  print("  Status: " + payment.current_state);
+});
+

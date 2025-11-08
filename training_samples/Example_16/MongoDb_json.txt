@@ -1,0 +1,8 @@
+{
+  "payment_ref": "PMT-2025-01-15-0001",
+  "amount": { "$numberDecimal": "2000.00" },
+  "currency": "GBP",
+  "current_state": "VALIDATED",
+  "created_at": { "$date": "2025-01-15T10:15:00Z" }
+}
+

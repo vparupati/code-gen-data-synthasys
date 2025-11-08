@@ -1,0 +1,54 @@
+// Complex join: Payments with full party and institution info
+db.payments.aggregate([
+  {
+    $lookup: {
+      from: "parties",
+      localField: "debtor_id",
+      foreignField: "_id",
+      as: "debtor_party"
+    }
+  },
+  { $unwind: "$debtor_party" },
+  {
+    $lookup: {
+      from: "institutions",
+      localField: "debtor_party.institution_id",
+      foreignField: "_id",
+      as: "debtor_institution"
+    }
+  },
+  { $unwind: "$debtor_institution" },
+  {
+    $lookup: {
+      from: "parties",
+      localField: "creditor_id",
+      foreignField: "_id",
+      as: "creditor_party"
+    }
+  },
+  { $unwind: "$creditor_party" },
+  {
+    $lookup: {
+      from: "institutions",
+      localField: "creditor_party.institution_id",
+      foreignField: "_id",
+      as: "creditor_institution"
+    }
+  },
+  { $unwind: "$creditor_institution" },
+  {
+    $project: {
+      transaction_reference: "$payment_ref",
+      payment_amount: "$amount",
+      transaction_currency: "$currency",
+      sender_name: "$debtor_party.display_name",
+      sender_bank_name: "$debtor_institution.legal_name",
+      sender_bank_code: "$debtor_institution.bic",
+      receiver_name: "$creditor_party.display_name",
+      receiver_bank_name: "$creditor_institution.legal_name",
+      receiver_bank_code: "$creditor_institution.bic"
+    }
+  },
+  { $sort: { created_at: -1 } }
+]);
+

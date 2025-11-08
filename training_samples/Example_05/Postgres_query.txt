@@ -1,0 +1,10 @@
+-- Insert a message batch
+INSERT INTO messages (external_ref, source_system, message_state, total_payments, attributes)
+VALUES (
+  'BATCH_2025-01-15_001',
+  'UpstreamGateway-A',
+  'RECEIVED',
+  0,
+  '{"format": "ISO20022-pacs.008", "file_hash": "sha256:abcd1234"}'::jsonb
+);
+

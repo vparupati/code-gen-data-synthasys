@@ -1,0 +1,41 @@
+{
+  "_id": ObjectId("6755f0b2c3a9b2f3d4a40001"),
+  "message_id": ObjectId("6755f0b2c3a9b2f3d4a30001"),
+  "payment_ref": "PMT-2025-01-15-0001",
+  "scheme": "FPS",
+  "amount": { "$numberDecimal": "2000.00" },
+  "currency": "GBP",
+  "current_state": "RECEIVED",
+  "last_state_changed_at": { "$date": "2025-01-15T10:15:00Z" },
+  "instructed_on": { "$date": "2025-01-15T10:15:00Z" },
+  "debtor_snapshot": {
+    "display_name": "Acme Manufacturing Ltd",
+    "identifiers": [
+      { "type": "ACCOUNT_NO", "value": "12345678", "scheme": "GB-ACCOUNT" }
+    ]
+  },
+  "creditor_snapshot": {
+    "display_name": "Widgets Wholesale PLC",
+    "identifiers": [
+      { "type": "ACCOUNT_NO", "value": "87654321", "scheme": "GB-ACCOUNT" }
+    ]
+  },
+  "debtor_id": ObjectId("6755f0b2c3a9b2f3d4a20001"),
+  "creditor_id": ObjectId("6755f0b2c3a9b2f3d4a20002"),
+  "state_history": [
+    {
+      "seq_no": 1,
+      "from_state": null,
+      "to_state": "RECEIVED",
+      "actor": { "type": "SYSTEM", "id": "ingestion-svc" },
+      "occurred_at": { "$date": "2025-01-15T10:15:00Z" },
+      "metadata": { "source": "UpstreamGateway-A" }
+    }
+  ],
+  "route_steps": [],
+  "route_summary": { "method": "DIRECT" },
+  "attributes": { "priority": "HIGH", "fee_model": "OUR" },
+  "created_at": { "$date": "2025-01-15T10:15:00Z" },
+  "updated_at": { "$date": "2025-01-15T10:15:00Z" }
+}
+

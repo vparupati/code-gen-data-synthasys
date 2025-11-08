@@ -1,0 +1,13 @@
+-- Insert payment event (state transition)
+INSERT INTO payment_events (payment_id, from_state, to_state, actor_type, actor_id, metadata)
+SELECT 
+    id,
+    'RECEIVED',
+    'VALIDATED',
+    'SYSTEM',
+    'validation-svc',
+    '{"aml": "PASS", "schema": "ISO20022"}'::jsonb
+FROM payments
+WHERE payment_ref = 'PMT-2025-01-15-0001'
+RETURNING id, seq_no, from_state, to_state, occurred_at;
+

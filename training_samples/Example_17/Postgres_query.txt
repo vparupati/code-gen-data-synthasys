@@ -1,0 +1,10 @@
+-- UNION: Combine payment references from different schemes
+SELECT payment_ref AS transaction_reference, scheme AS payment_method
+FROM payments
+WHERE scheme = 'FPS'
+UNION
+SELECT payment_ref, scheme
+FROM payments
+WHERE scheme = 'SEPA'
+ORDER BY transaction_reference;
+

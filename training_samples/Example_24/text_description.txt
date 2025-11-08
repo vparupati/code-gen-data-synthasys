@@ -1,0 +1,2 @@
+Create a new payment batch and payment in one transaction. If any step fails, cancel everything. First, create a batch with reference 'BATCH_TXN_001' from system 'TestSystem' in 'received' status with 1 payment. Then create a payment with reference 'PMT-TXN-001' for 1000.00 GBP using FPS scheme, sent from 'Test Debtor' to 'Test Creditor'. Record that this payment started in 'received' status. Update the batch to show it has 1 payment.
+

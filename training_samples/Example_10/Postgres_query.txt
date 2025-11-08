@@ -1,0 +1,13 @@
+-- Join payments with messages
+SELECT 
+    p.payment_ref AS transaction_reference,
+    p.amount AS payment_amount,
+    p.currency AS transaction_currency,
+    p.payment_state AS transaction_status,
+    m.external_ref AS batch_identifier,
+    m.source_system AS origin_system,
+    m.message_state AS batch_status
+FROM payments p
+INNER JOIN messages m ON p.message_id = m.id
+ORDER BY p.created_at DESC;
+

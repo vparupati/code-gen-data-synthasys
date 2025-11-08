@@ -1,0 +1,10 @@
+// Top 10 payments by amount
+db.payments.find()
+  .sort({ amount: -1 })
+  .limit(10)
+  .forEach(function(payment) {
+    print("Payment: " + payment.payment_ref + 
+          ", Amount: " + payment.amount + 
+          ", Currency: " + payment.currency);
+  });
+

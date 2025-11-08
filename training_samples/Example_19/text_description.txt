@@ -1,0 +1,2 @@
+Rank all payments by amount. For each payment, show the payment reference, payment scheme, amount, its rank within its own scheme (1st, 2nd, 3rd, etc.), its overall rank across all schemes, and the total amount for that scheme. Group the results by scheme and show the highest amounts first within each scheme.
+

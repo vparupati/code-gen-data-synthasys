@@ -1,0 +1,11 @@
+// Query nested fields
+db.payments.find({
+  "debtor_snapshot.display_name": "Acme Manufacturing Ltd",
+  "attributes.priority": "HIGH"
+}).forEach(function(payment) {
+  print("Payment: " + payment.payment_ref);
+  print("  Sender: " + payment.debtor_snapshot.display_name);
+  print("  Receiver: " + payment.creditor_snapshot.display_name);
+  print("  Priority: " + payment.attributes.priority);
+});
+

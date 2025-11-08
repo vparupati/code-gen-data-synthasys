@@ -1,0 +1,25 @@
+// Join payments with messages using $lookup
+db.payments.aggregate([
+  {
+    $lookup: {
+      from: "messages",
+      localField: "message_id",
+      foreignField: "_id",
+      as: "message"
+    }
+  },
+  { $unwind: { path: "$message", preserveNullAndEmptyArrays: true } },
+  {
+    $project: {
+      transaction_reference: "$payment_ref",
+      payment_amount: "$amount",
+      transaction_currency: "$currency",
+      transaction_status: "$current_state",
+      batch_identifier: "$message.external_ref",
+      origin_system: "$message.source_system",
+      batch_status: "$message.current_state"
+    }
+  },
+  { $sort: { created_at: -1 } }
+]);
+

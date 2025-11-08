@@ -1,0 +1,10 @@
+// Get payments by state
+db.payments.find({
+  current_state: "SETTLED"
+}).sort({ last_state_changed_at: -1 }).forEach(function(payment) {
+  print("Payment: " + payment.payment_ref + 
+        ", Amount: " + payment.amount + 
+        ", Currency: " + payment.currency +
+        ", Status: " + payment.current_state);
+});
+

@@ -1,0 +1,15 @@
+{
+  "_id": ObjectId("6755f0b2c3a9b2f3d4a20001"),
+  "party_type": "DEBTOR",
+  "display_name": "Acme Manufacturing Ltd",
+  "institution_id": ObjectId("6755f0b2c3a9b2f3d4a10001"),
+  "email": "ap@acme.example",
+  "phone": "+44-20-1234-5678",
+  "identifiers": [
+    { "type": "ACCOUNT_NO", "value": "12345678", "scheme": "GB-ACCOUNT" },
+    { "type": "SORT_CODE", "value": "12-34-56", "scheme": "GB-SORTCODE" }
+  ],
+  "created_at": { "$date": "2025-01-15T10:05:00Z" },
+  "updated_at": { "$date": "2025-01-15T10:05:00Z" }
+}
+

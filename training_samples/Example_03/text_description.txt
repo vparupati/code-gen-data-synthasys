@@ -1,0 +1,2 @@
+Add a new bank to the system. The bank is called 'Bank A UK'. Its BIC code is 'BKUKGB22XXX' and its LEI code is '213800D1EI4B9WTWWD28'. The bank is located in 'GB' (United Kingdom).
+

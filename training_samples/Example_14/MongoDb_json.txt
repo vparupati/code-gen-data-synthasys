@@ -1,0 +1,9 @@
+{
+  "seq_no": 2,
+  "from_state": "RECEIVED",
+  "to_state": "VALIDATED",
+  "actor": { "type": "SYSTEM", "id": "validation-svc" },
+  "occurred_at": { "$date": "2025-01-15T10:20:00Z" },
+  "metadata": { "aml": "PASS", "schema": "ISO20022" }
+}
+

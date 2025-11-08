@@ -1,0 +1,2 @@
+Give me a summary of payments grouped by payment scheme. For each scheme, tell me how many payments there are, the total amount of all payments, the average payment amount, the smallest payment, and the largest payment. Show the schemes with the highest total amounts first.
+

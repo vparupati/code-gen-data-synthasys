@@ -1,0 +1,33 @@
+// Subquery equivalent: Payments above average amount
+db.payments.aggregate([
+  {
+    $group: {
+      _id: null,
+      avg_amount: { $avg: "$amount" }
+    }
+  },
+  {
+    $lookup: {
+      from: "payments",
+      pipeline: [
+        {
+          $match: {
+            $expr: { $gt: ["$amount", "$$avg_amount"] }
+          }
+        },
+        {
+          $project: {
+            transaction_reference: "$payment_ref",
+            payment_amount: "$amount",
+            average_payment_amount: "$$avg_amount"
+          }
+        },
+        { $sort: { payment_amount: -1 } }
+      ],
+      as: "above_avg_payments"
+    }
+  },
+  { $unwind: "$above_avg_payments" },
+  { $replaceRoot: { newRoot: "$above_avg_payments" } }
+]);
+

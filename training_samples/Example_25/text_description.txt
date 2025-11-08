@@ -1,0 +1,2 @@
+Show me complete payment information including who sent it, who received it, and their banks. For each payment, show the payment reference, amount, currency, sender's name and their bank name and BIC code, receiver's name and their bank name and BIC code. Show the most recent payments first.
+

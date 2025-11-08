@@ -1,0 +1,2 @@
+Show me all payments that have been successfully settled. For each payment, I want to see the payment reference, the amount, the currency, the current status, and when the status was last changed. Show the most recently settled payments first.
+

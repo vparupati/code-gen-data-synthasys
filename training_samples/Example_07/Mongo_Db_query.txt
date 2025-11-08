@@ -1,0 +1,4 @@
+// Get payment by _id
+// Replace ObjectId("...") with actual payment _id
+db.payments.findOne({ _id: ObjectId("6755f0b2c3a9b2f3d4a40001") });
+

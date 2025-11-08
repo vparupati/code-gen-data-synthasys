@@ -1,0 +1,26 @@
+// CTE equivalent: Payment statistics by scheme
+db.payments.aggregate([
+  {
+    $group: {
+      _id: "$scheme",
+      transaction_count: { $sum: 1 },
+      total_amount: { $sum: "$amount" },
+      average_amount: { $avg: "$amount" },
+      minimum_amount: { $min: "$amount" },
+      maximum_amount: { $max: "$amount" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      payment_method: "$_id",
+      transaction_count: 1,
+      total_amount: 1,
+      average_amount: { $round: ["$average_amount", 2] },
+      minimum_amount: 1,
+      maximum_amount: 1
+    }
+  },
+  { $sort: { total_amount: -1 } }
+]);
+

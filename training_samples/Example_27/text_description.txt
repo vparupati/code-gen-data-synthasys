@@ -1,0 +1,2 @@
+Analyze which countries and roles are most involved in routing payments. For each combination of routing role and country, count how many routing steps occurred and how many unique payments went through that route. Show the combinations with the most routing steps first.
+

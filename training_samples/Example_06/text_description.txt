@@ -1,0 +1,2 @@
+Record a new payment transaction. This payment belongs to the batch 'BATCH_2025-01-15_001'. The payment reference is 'PMT-2025-01-15-0001'. It's a payment of 2000.00 GBP using the FPS payment scheme. The payment is being sent from 'Acme Manufacturing Ltd' (account number 12345678) to 'Widgets Wholesale PLC' (account number 87654321). The payment is currently in 'received' status. It's a high priority payment and the fee model is 'OUR' (sender pays all fees). The payment will be routed directly without intermediaries.
+

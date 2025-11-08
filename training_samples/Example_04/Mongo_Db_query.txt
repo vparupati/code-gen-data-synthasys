@@ -1,0 +1,19 @@
+// Insert a party with embedded identifiers
+// First, get the institution ID
+var institutionId = db.institutions.findOne({ bic: "BKUKGB22XXX" })._id;
+
+// Insert party with identifiers embedded
+db.parties.insertOne({
+  party_type: "DEBTOR",
+  display_name: "Acme Manufacturing Ltd",
+  institution_id: institutionId,
+  email: "ap@acme.example",
+  phone: "+44-20-1234-5678",
+  identifiers: [
+    { type: "ACCOUNT_NO", value: "12345678", scheme: "GB-ACCOUNT" },
+    { type: "SORT_CODE", value: "12-34-56", scheme: "GB-SORTCODE" }
+  ],
+  created_at: new Date(),
+  updated_at: new Date()
+});
+

@@ -1,0 +1,27 @@
+// Insert payment event (append to state_history array)
+var payment = db.payments.findOne({ payment_ref: "PMT-2025-01-15-0001" });
+var nextSeqNo = payment.state_history.length > 0 
+  ? Math.max(...payment.state_history.map(h => h.seq_no)) + 1 
+  : 1;
+
+db.payments.updateOne(
+  { payment_ref: "PMT-2025-01-15-0001" },
+  {
+    $push: {
+      state_history: {
+        seq_no: nextSeqNo,
+        from_state: payment.current_state,
+        to_state: "VALIDATED",
+        actor: { type: "SYSTEM", id: "validation-svc" },
+        occurred_at: new Date(),
+        metadata: { aml: "PASS", schema: "ISO20022" }
+      }
+    },
+    $set: {
+      current_state: "VALIDATED",
+      last_state_changed_at: new Date(),
+      updated_at: new Date()
+    }
+  }
+);
+

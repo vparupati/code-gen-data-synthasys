@@ -1,0 +1,10 @@
+// Insert a single institution
+db.institutions.insertOne({
+  legal_name: "Bank A UK",
+  bic: "BKUKGB22XXX",
+  lei: "213800D1EI4B9WTWWD28",
+  country_code: "GB",
+  created_at: new Date(),
+  updated_at: new Date()
+});
+

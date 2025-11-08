@@ -1,0 +1,9 @@
+-- INTERSECT: Find payments in both GBP and EUR
+SELECT payment_ref AS transaction_reference
+FROM payments
+WHERE currency = 'GBP'
+INTERSECT
+SELECT payment_ref
+FROM payments
+WHERE currency = 'EUR';
+

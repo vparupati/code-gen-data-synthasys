@@ -1,0 +1,155 @@
+Category Mapper for Payment Processing Training Samples
+========================================================
+
+This file maps each training example to its category and provides a brief description.
+
+01_Create_Database
+------------------
+Category: Database Setup
+Description: Create a new database for payment processing system. For PostgreSQL, create the database and enable UUID extension. For MongoDB, create the database and set up authentication user with read/write permissions.
+
+02_Create_Tables
+----------------
+Category: Schema Definition
+Description: Create all required tables for the payment processing system in PostgreSQL, including enum types, reference tables (institutions, parties), and core tables (messages, payments). For MongoDB, the collections are created automatically on first insert, but we'll show the structure and create indexes.
+
+03_Insert_Institution
+---------------------
+Category: Data Insertion
+Description: Insert a new financial institution into the database. The institution should have a legal name, optional BIC code, optional LEI code, and country code.
+
+04_Insert_Party
+---------------
+Category: Data Insertion
+Description: Insert a new party (debtor or creditor) into the database. The party should have a display name, party type, optional email and phone, and can be associated with an institution. For MongoDB, include identifiers as an embedded array.
+
+05_Insert_Message
+-----------------
+Category: Data Insertion
+Description: Insert a new message batch into the database. A message represents a batch of payments received from an external system. It should have an external reference, source system, initial state of RECEIVED, and optional attributes.
+
+06_Insert_Payment
+-----------------
+Category: Data Insertion
+Description: Insert a new payment transaction into the database. A payment should reference a message, have a payment reference, scheme, amount, currency, and include snapshots of debtor and creditor information. For MongoDB, include initial state history entry.
+
+07_Query_By_ID
+--------------
+Category: Basic Query
+Description: Retrieve a payment record by its unique identifier (ID). This is a basic lookup operation to get all details of a specific payment transaction.
+
+08_Query_By_Reference
+---------------------
+Category: Basic Query
+Description: Retrieve a payment record by its payment reference (payment_ref). This is a business identifier that is more meaningful than the internal ID.
+
+09_Filter_By_State
+------------------
+Category: Basic Query
+Description: Retrieve all payments that are in a specific state, such as SETTLED, REJECTED, or PENDING_FUNDS. This allows filtering payments by their current processing status.
+
+10_Join_Payment_Message
+------------------------
+Category: Join Operations
+Description: Join payments with their parent message to get payment details along with message batch information. This shows how payments relate to the message batches they belong to.
+
+11_Join_Payment_Party
+---------------------
+Category: Join Operations
+Description: Join payments with party information to get sender and receiver details. This shows how to retrieve payment information along with the parties involved in the transaction.
+
+12_Aggregate_By_Scheme
+-----------------------
+Category: Aggregation
+Description: Aggregate payment data by scheme to get statistics like total count, total amount, and average amount for each payment scheme. This demonstrates GROUP BY aggregation operations.
+
+13_Update_Payment_State
+---------------------
+Category: Update Operations
+Description: Update the payment state from one status to another. This is a common operation when a payment moves through its lifecycle (e.g., from RECEIVED to VALIDATED to SETTLED).
+
+14_Insert_Payment_Event
+-----------------------
+Category: Data Insertion
+Description: Insert a state transition event for a payment. This records the history of state changes, showing when and why a payment moved from one state to another.
+
+15_Query_With_JSONB
+-------------------
+Category: Advanced Query
+Description: Query payments using JSONB fields. This demonstrates how to filter and extract data from JSONB columns like debtor_snapshot, creditor_snapshot, or attributes.
+
+16_Time_Range_Query
+-------------------
+Category: Basic Query
+Description: Query payments created within a specific date range. This is useful for reporting and analytics to find payments processed during a particular time period.
+
+17_Union_Operations
+-------------------
+Category: Set Operations
+Description: Combine results from multiple queries using UNION operation. This example shows how to get payment references from multiple payment schemes in a single result set.
+
+18_Intersection_Operations
+--------------------------
+Category: Set Operations
+Description: Find common payment references that appear in multiple result sets using INTERSECT operation. This example finds payments that exist in both GBP and EUR currency lists.
+
+19_Window_Functions
+-------------------
+Category: Analytical Functions
+Description: Use window functions to rank payments by amount within each payment scheme. This demonstrates ROW_NUMBER, RANK, and other window functions for analytical queries.
+
+20_Subquery_Examples
+--------------------
+Category: Subqueries
+Description: Use subqueries to find payments that are above the average payment amount. This demonstrates both scalar subqueries and correlated subqueries.
+
+21_CTE_Examples
+---------------
+Category: Common Table Expressions
+Description: Use Common Table Expressions (CTEs) to calculate payment statistics grouped by payment scheme. CTEs make complex queries more readable and allow for step-by-step data transformation.
+
+22_Analytical_Queries
+---------------------
+Category: Analytics
+Description: Perform complex analytical queries to calculate payment success rates by scheme. This includes counting settled vs rejected payments and calculating percentages.
+
+23_Delete_Operations
+-------------------
+Category: Delete Operations
+Description: Delete payment records that meet specific conditions. This example shows how to safely delete payments that are in a FAILED state and older than 30 days.
+
+24_Transaction_Example
+-------------------
+Category: Transactions
+Description: Execute a multi-step transaction that creates a message, inserts a payment, and logs the initial state transition event. All operations must succeed together or all must be rolled back.
+
+25_Complex_Join
+---------------
+Category: Join Operations
+Description: Perform a complex multi-table join to get payment details with full party and institution information. This shows how to join payments, parties, and institutions to get complete sender and receiver bank details.
+
+26_State_Transition_Analysis
+-----------------------------
+Category: Analytics
+Description: Analyze payment state transitions to understand the flow from one state to another. This query counts how many times payments transition from each state to each state, providing insights into payment processing patterns.
+
+27_Routing_Analysis
+-------------------
+Category: Analytics
+Description: Analyze payment routing patterns by counting routing steps by role and country. This helps understand which institutions and countries are most involved in payment routing.
+
+28_Top_N_Queries
+----------------
+Category: Basic Query
+Description: Find the top N payments by various criteria such as amount, processing time, or transaction count. This demonstrates LIMIT and ORDER BY operations for getting the highest or most significant records.
+
+29_Group_By_Rollup
+------------------
+Category: Aggregation
+Description: Use GROUP BY ROLLUP to create hierarchical aggregations with subtotals. This provides totals at multiple levels: by scheme and currency, by scheme only, and overall totals.
+
+30_Natural_Language_Mapping
+----------------------------
+Category: Natural Language Processing
+Description: Query payments using natural language descriptions that map to actual column names. This demonstrates how to retrieve "payment amount" (maps to amount), "transaction status" (maps to payment_state), and "sender name" (maps to debtor_snapshot->>'display_name' or via join).
+

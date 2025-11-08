@@ -1,0 +1,10 @@
+-- GROUP BY ROLLUP: Hierarchical aggregation
+SELECT 
+    scheme AS payment_method,
+    currency AS transaction_currency,
+    COUNT(*) AS transaction_count,
+    SUM(amount) AS total_amount
+FROM payments
+GROUP BY ROLLUP(scheme, currency)
+ORDER BY scheme NULLS LAST, currency NULLS LAST;
+

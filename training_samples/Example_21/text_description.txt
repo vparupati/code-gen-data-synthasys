@@ -1,0 +1,2 @@
+Calculate payment statistics for each payment scheme. For each scheme, count how many payments there are, calculate the total amount, average amount (rounded to 2 decimal places), smallest payment, and largest payment. Show the schemes with the highest total amounts first.
+

@@ -1,0 +1,2 @@
+Find payment references that appear in both the list of GBP payments and the list of EUR payments. Show me only the payment references that are in both lists.
+

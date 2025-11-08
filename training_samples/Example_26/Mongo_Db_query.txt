@@ -1,0 +1,23 @@
+// State transition analysis
+db.payments.aggregate([
+  { $unwind: "$state_history" },
+  {
+    $group: {
+      _id: {
+        source_state: "$state_history.from_state",
+        target_state: "$state_history.to_state"
+      },
+      transition_count: { $sum: 1 }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      source_state: "$_id.source_state",
+      target_state: "$_id.target_state",
+      transition_count: 1
+    }
+  },
+  { $sort: { transition_count: -1 } }
+]);
+

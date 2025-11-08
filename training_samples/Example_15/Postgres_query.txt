@@ -1,0 +1,12 @@
+-- Query JSONB fields
+-- Get payments where debtor name matches
+SELECT 
+    payment_ref AS transaction_reference,
+    amount AS payment_amount,
+    debtor_snapshot->>'display_name' AS sender_name,
+    creditor_snapshot->>'display_name' AS receiver_name,
+    attributes->>'priority' AS payment_priority
+FROM payments
+WHERE debtor_snapshot->>'display_name' = 'Acme Manufacturing Ltd'
+  AND attributes @> '{"priority": "HIGH"}'::jsonb;
+

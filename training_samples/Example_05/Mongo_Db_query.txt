@@ -1,0 +1,20 @@
+// Insert a message batch
+db.messages.insertOne({
+  external_ref: "BATCH_2025-01-15_001",
+  source_system: "UpstreamGateway-A",
+  current_state: "RECEIVED",
+  received_at: new Date(),
+  last_state_changed_at: new Date(),
+  attributes: {
+    format: "ISO20022-pacs.008",
+    file_hash: "sha256:abcd1234"
+  },
+  payment_ids: [],
+  totals: {
+    count: 0,
+    by_currency: []
+  },
+  created_at: new Date(),
+  updated_at: new Date()
+});
+
