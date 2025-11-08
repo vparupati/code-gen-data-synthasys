@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: payment_postgres
+    environment:
+      POSTGRES_USER: payment_user
+      POSTGRES_PASSWORD: payment_pass
+      POSTGRES_DB: payment_db
+    ports:
+      - "5433:5432"  # Changed to 5433 to avoid conflict with local PostgreSQL
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init_postgresql.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U payment_user -d payment_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - payment_network
+
+  mongodb:
+    image: mongo:7.0
+    container_name: payment_mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: payment_user
+      MONGO_INITDB_ROOT_PASSWORD: payment_pass
+      MONGO_INITDB_DATABASE: payment_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./init_mongodb.js:/docker-entrypoint-initdb.d/init.js:ro
+    command: mongod --auth
+    healthcheck:
+      test: ["CMD", "mongosh", "-u", "payment_user", "-p", "payment_pass", "--authenticationDatabase", "admin", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - payment_network
+
+volumes:
+  postgres_data:
+  mongodb_data:
+
+networks:
+  payment_network:
+    driver: bridge
+
